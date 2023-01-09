@@ -27,6 +27,7 @@ var MapMatching = {};
  * @param {'simplified'|'full'|'false'} [config.overview="simplified"] - Type of returned overview geometry.
  * @param {boolean} [config.steps=false] - Whether to return steps and turn-by-turn instructions.
  * @param {boolean} [config.tidy=false] - Whether or not to transparently remove clusters and re-sample traces for improved map matching results.
+ * @param {Array<'access'|'oneways'|'restrictions'>} [config.ignore] - Ignore certain routing restrictions when map matching. You can include several ignore options as a comma-separated list (for example, ignore=access,oneways,restrictions).
  * @return {MapiRequest}
  *
  * @example
@@ -85,7 +86,8 @@ MapMatching.getMatch = function(config) {
     language: v.string,
     overview: v.oneOf('full', 'simplified', 'false'),
     steps: v.boolean,
-    tidy: v.boolean
+    tidy: v.boolean,
+    ignore: v.arrayOf(v.oneOf('access', 'oneways', 'restrictions'))
   })(config);
 
   var pointCount = config.points.length;
@@ -183,6 +185,7 @@ MapMatching.getMatch = function(config) {
       overview: config.overview,
       steps: config.steps,
       tidy: config.tidy,
+      ignore: config.ignore,
       approaches: path.approach,
       radiuses: path.radius,
       waypoints: path.isWaypoint,

@@ -1864,6 +1864,7 @@ Snap recorded location traces to roads and paths.
     *   `config.overview` **(`"simplified"` | `"full"` | `"false"`)** Type of returned overview geometry. (optional, default `"simplified"`)
     *   `config.steps` **[boolean][202]** Whether to return steps and turn-by-turn instructions. (optional, default `false`)
     *   `config.tidy` **[boolean][202]** Whether or not to transparently remove clusters and re-sample traces for improved map matching results. (optional, default `false`)
+    *   `config.ignore` **[Array][209]<(`"access"` | `"oneways"` | `"restrictions"`)>?** Ignore certain routing restrictions when map matching. You can include several ignore options as a comma-separated list (for example, ignore=access,oneways,restrictions).
 
 #### Examples
 
