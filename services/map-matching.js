@@ -126,7 +126,7 @@ MapMatching.getMatch = function(config) {
     }
 
     if (obj.hasOwnProperty('timestamp') && obj.timestamp != null) {
-      path.timestamp.push(Number(new Date(obj.timestamp)));
+      path.timestamp.push(Math.round(Number(new Date(obj.timestamp)) / 1000));
     } else {
       path.timestamp.push('');
     }
